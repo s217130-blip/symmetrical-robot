@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+<title>愛學 AI｜新世代技職智慧學習平台</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --primary: #4f46e5;       /* 皇家靛藍 */
+  --primary-light: #818cf8;
+  --secondary: #d946ef;     /* 幻彩野莓粉 */
+  --bg: #fafafa;            /* 質感極簡白 */
+  --card: #ffffff;
+  --text: #0f172a;          /* 深邃藍黑 */
+  --muted: #64748b;         /* 高級灰色 */
+  --border: #f1f5f9;        /* 輕薄邊框 */
+  --success: #10b981;
+  --gradient-main: linear-gradient(135deg, #4f46e5, #d946ef);
+  --gradient-sub: linear-gradient(135deg, #3b82f6, #8b5cf6);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Noto Sans TC', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  overflow-x: hidden;
+  letter-spacing: -0.01em;
+}
+
+/* NAVIGATION */
+nav {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 999;
+  padding: 20px 8%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  backdrop-filter: blur(24px);
+  background: rgba(255, 255, 255, 0.8);
+  border-bottom: 1px solid rgba(241, 245, 249, 0.6);
+  transition: all 0.3s;
+}
+
+.logo {
+  font-size: 28px;
+  font-weight: 900;
+  background: var(--gradient-main);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  letter-spacing: -1px;
+}
+
+nav ul {
+  display: flex;
+  list-style: none;
+  gap: 40px;
+}
+
+nav a {
+  text-decoration: none;
+  color: var(--muted);
+  font-weight: 500;
+  font-size: 15px;
+  transition: .3s ease;
+  position: relative;
+}
+
+nav a:hover {
+  color: var(--primary);
+}
+
+nav a::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: -6px;
+  left: 0;
+  background: var(--gradient-main);
+  transition: width 0.3s ease;
+}
+
+nav a:hover::after {
+  width: 100%;
+}
+
+.nav-btn {
+  background: var(--gradient-main);
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 16px;
+  font-weight: 700;
+  font-size: 14px;
+  cursor: pointer;
+  transition: 0.3s;
+  box-shadow: 0 10px 25px rgba(79, 70, 229, 0.2);
+}
+
+.nav-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px rgba(79, 70, 229, 0.35);
+}
+
+/* HERO SECTION */
+.hero {
+  padding: 180px 8% 120px;
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 80px;
+  align-items: center;
+  position: relative;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  right: -10%;
+  top: -10%;
+  width: 700px;
+  height: 700px;
+  background: radial-gradient(circle, rgba(217,70,239,0.12), transparent 70%);
+  z-index: -1;
+}
+
+.hero-text h1 {
+  font-size: 68px;
+  line-height: 1.15;
+  font-weight: 900;
+  margin-bottom: 28px;
+  letter-spacing: -2px;
+}
+
+.hero-text h1 span {
+  background: var(--gradient-main);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.hero-text p {
+  color: var(--muted);
+  font-size: 18px;
+  line-height: 1.9;
+  max-width: 580px;
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 20px;
+  margin-top: 40px;
+}
+
+.primary-btn {
+  background: var(--gradient-main);
+  color: white;
+  padding: 18px 32px;
+  border: none;
+  border-radius: 20px;
+  font-weight: 700;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 20px 40px rgba(79, 70, 229, 0.25);
+}
+
+.primary-btn:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 25px 50px rgba(79, 70, 229, 0.4);
+}
+
+.secondary-btn {
+  background: white;
+  border: 1px solid var(--border);
+  color: var(--text);
+  padding: 18px 32px;
+  border-radius: 20px;
+  font-weight: 600;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.secondary-btn:hover {
+  background: #f8fafc;
+  border-color: #cbd5e1;
+}
+
+/* HERO UI / DASHBOARD */
+.hero-ui {
+  position: relative;
+}
+
+.dashboard {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(30px);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  border-radius: 40px;
+  padding: 34px;
+  box-shadow: 0 30px 70px rgba(15, 23, 42, 0.06);
+}
+
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 28px;
+}
+
+.pill {
+  background: #f0f0ff;
+  color: var(--primary);
+  padding: 8px 18px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.progress-card {
+  background: var(--gradient-main);
+  border-radius: 30px;
+  padding: 30px;
+  color: white;
+  margin-bottom: 26px;
+  box-shadow: 0 15px 35px rgba(79, 70, 229, 0.2);
+}
+
+.progress-card h3 {
+  font-size: 30px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.progress-bar {
+  height: 8px;
+  background: rgba(255, 255, 255, 0.25);
+  border-radius: 999px;
+  overflow: hidden;
+  margin-top: 20px;
+}
+
+.progress-fill {
+  width: 76%;
+  height: 100%;
+  background: white;
+  border-radius: 999px;
+}
+
+.course-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.course-item {
+  background: white;
+  border-radius: 24px;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  border: 1px solid var(--border);
+  transition: 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.course-item:hover {
+  transform: translateY(-5px) scale(1.02);
+  box-shadow: 0 15px 35px rgba(15, 23, 42, 0.05);
+}
+
+.icon {
+  width: 54px;
+  height: 54px;
+  border-radius: 18px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 22px;
+}
+
+.blue { background: #eff6ff; color: #2563eb; }
+.green { background: #ecfdf5; color: #10b981; }
+.purple { background: #f5f3ff; color: #7c3aed; }
+
+.course-info h4 {
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.course-info p {
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.percent {
+  font-weight: 800;
+  font-size: 16px;
+  color: var(--primary);
+}
+
+/* SECTION GLOBAL */
+section {
+  padding: 100px 8%;
+}
+
+.section-title {
+  font-size: 44px;
+  font-weight: 900;
+  margin-bottom: 16px;
+  letter-spacing: -1px;
+}
+
+.section-sub {
+  color: var(--muted);
+  font-size: 16px;
+  margin-bottom: 50px;
+  line-height: 1.8;
+}
+
+/* GRID & CARDS */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 32px;
+}
+
+.card {
+  background: white;
+  border-radius: 32px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  transition: 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.card:hover {
+  transform: translateY(-12px);
+  box-shadow: 0 30px 60px rgba(15, 23, 42, 0.08);
+}
+
+.card-img-wrapper {
+  overflow: hidden;
+  width: 100%;
+  height: 240px;
+}
+
+.card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+
+.card:hover img {
+  transform: scale(1.06);
+}
+
+.card-body {
+  padding: 28px;
+}
+
+.tag {
+  display: inline-block;
+  padding: 6px 14px;
+  border-radius: 999px;
+  background: #f0f0ff;
+  color: var(--primary);
+  font-size: 12px;
+  font-weight: 700;
+  margin-bottom: 18px;
+}
+
+.card h3 {
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+.card p {
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.8;
+}
+
+.price {
+  margin-top: 24px;
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--success);
+}
+
+/* FEATURES */
+.features {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 28px;
+}
+
+.feature {
+  background: white;
+  padding: 36px;
+  border-radius: 32px;
+  border: 1px solid var(--border);
+  transition: 0.3s;
+}
+
+.feature:hover {
+  border-color: var(--primary-light);
+  transform: translateY(-4px);
+}
+
+.feature-icon {
+  width: 64px;
+  height: 64px;
+  border-radius: 20px;
+  background: #f0f0ff;
+  color: var(--primary);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 28px;
+  margin-bottom: 24px;
+}
+
+.feature h3 {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+.feature p {
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+/* CTA */
+.cta {
+  background: var(--gradient-main);
+  border-radius: 48px;
+  color: white;
+  padding: 90px;
+  text-align: center;
+  margin: 60px 8% 100px;
+  box-shadow: 0 30px 60px rgba(79, 70, 229, 0.25);
+  position: relative;
+  overflow: hidden;
+}
+
+.cta h2 {
+  font-size: 54px;
+  font-weight: 900;
+  margin-bottom: 24px;
+  letter-spacing: -1px;
+}
+
+.cta p {
+  opacity: 0.9;
+  font-size: 18px;
+  max-width: 600px;
+  margin: auto;
+  line-height: 1.8;
+}
+
+.cta button {
+  margin-top: 40px;
+  background: white;
+  color: var(--primary);
+  border: none;
+  padding: 18px 36px;
+  border-radius: 20px;
+  font-weight: 700;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.3s;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+}
+
+.cta button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+}
+
+/* FOOTER */
+footer {
+  padding: 100px 8% 60px;
+  background: white;
+  border-top: 1px solid var(--border);
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 60px;
+}
+
+.footer-logo {
+  font-size: 30px;
+  font-weight: 900;
+  margin-bottom: 20px;
+  background: var(--gradient-main);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+footer p {
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.8;
+  max-width: 320px;
+}
+
+footer h4 {
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 24px;
+}
+
+footer a {
+  display: block;
+  margin-bottom: 14px;
+  color: var(--muted);
+  text-decoration: none;
+  font-size: 15px;
+  transition: .3s;
+}
+
+footer a:hover {
+  color: var(--primary);
+}
+
+/* RESPONSIVE DESIGN */
+@media(max-width: 1200px) {
+  .hero { grid-template-columns: 1fr; text-align: center; gap: 50px; padding-top: 140px; }
+  .hero-text p { margin: auto; }
+  .hero-buttons { justify-content: center; }
+  .features { grid-template-columns: 1fr 1fr; }
+  .footer-grid { grid-template-columns: 1fr 1fr; gap: 40px; }
+}
+
+@media(max-width: 768px) {
+  nav ul { display: none; }
+  .hero-text h1 { font-size: 46px; }
+  .features { grid-template-columns: 1fr; }
+  .footer-grid { grid-template-columns: 1fr; }
+  .cta { padding: 60px 24px; border-radius: 32px; }
+  .cta h2 { font-size: 36px; }
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+  <div class="logo">愛學 AI</div>
+  <ul>
+    <li><a href="#">智慧課程</a></li>
+    <li><a href="#">技能證照</a></li>
+    <li><a href="#">AI 助教</a></li>
+    <li><a href="#">技職升學</a></li>
+    <li><a href="#">產學合作</a></li>
+  </ul>
+  <button class="nav-btn">免費開始</button>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-text">
+    <h1>讓技職教育<br>翻轉為 <span>愛學新時代</span></h1>
+    <p>專為高職生與科技大學生打造的智慧學習生態系。整合 AI 弱點分析、考照模擬、統測備考與業界實作，真正無縫接軌升學與未來職場藍圖。</p>
+    <div class="hero-buttons">
+      <button class="primary-btn">立即開啟智慧學習</button>
+      <button class="secondary-btn">觀看平台功能</button>
+    </div>
+  </div>
+
+  <div class="hero-ui">
+    <div class="dashboard">
+      <div class="topbar">
+        <div class="pill">🤖 AI 學習導航中</div>
+        <div class="pill">Lv.12 技術新星</div>
+      </div>
+      <div class="progress-card">
+        <h3>本週成長進度</h3>
+        <p>你的 Python 與統測英文進步幅度已超越全球 82% 的學員</p>
+        <div class="progress-bar">
+          <div class="progress-fill"></div>
+        </div>
+      </div>
+      <div class="course-list">
+        <div class="course-item">
+          <div class="icon blue">💻</div>
+          <div class="course-info">
+            <h4>Python 全端開發實戰</h4>
+            <p>HTML / CSS / JavaScript / Flask 框架</p>
+          </div>
+          <div class="percent">78%</div>
+        </div>
+        <div class="course-item">
+          <div class="icon green">📊</div>
+          <div class="course-info">
+            <h4>Excel 商業高級數據分析</h4>
+            <p>商管群 × AI 智慧自動化應用</p>
+          </div>
+          <div class="percent">91%</div>
+        </div>
+        <div class="course-item">
+          <div class="icon purple">⚡</div>
+          <div class="course-info">
+            <h4>乙級電器修護專區</h4>
+            <p>核心術科 3D 模擬與歷屆精選題庫</p>
+          </div>
+          <div class="percent">62%</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- COURSES -->
+<section>
+  <h2 class="section-title">熱門智慧學習領域</h2>
+  <p class="section-sub">精選技職教育核心，全面導入 AI 輔助，雕琢出最符合明日產業界的高含金量能力。</p>
+  <div class="grid">
+    <div class="card">
+      <div class="card-img-wrapper">
+        <img src="https://images.unsplash.com/photo-1515879218367-8466d910aaa4?q=80&w=1200&auto=format&fit=crop" alt="IT">
+      </div>
+      <div class="card-body">
+        <div class="tag">資訊科技</div>
+        <h3>AI 驅動 × 程式工程</h3>
+        <p>從奠定 Python 基礎到獨立研發 AI 系統應用，全方位掌握下個世代的核心數位科技技能。</p>
+        <div class="price">120+ 精選模組</div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-img-wrapper">
+        <img src="https://images.unsplash.com/photo-1581092921461-eab62e97a780?q=80&w=1200&auto=format&fit=crop" alt="Engineering">
+      </div>
+      <div class="card-body">
+        <div class="tag">工程技術</div>
+        <h3>電機控制與工業自動化</h3>
+        <p>涵蓋 PLC 編程、智慧控制與國家乙級檢定模擬，完美對接自動化工廠的迫切人才需求。</p>
+        <div class="price">85 種熱門證照</div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-img-wrapper">
+        <img src="https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?q=80&w=1200&auto=format&fit=crop" alt="Business">
+      </div>
+      <div class="card-body">
+        <div class="tag">商業管理</div>
+        <h3>大數據分析 × 現代商務</h3>
+        <p>融會貫通高階 Excel 應用、數位會計與 AI 商業決策，全面升級新世代菁英商管思維。</p>
+        <div class="price">30,000+ 在線學員</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section>
+  <h2 class="section-title">專為技職打造的貼心設計</h2>
+  <p class="section-sub">不只是被動地觀看教學影片，更是主動幫你規劃未來、突破瓶頸的智慧領航員。</p>
+  <div class="features">
+    <div class="feature">
+      <div class="feature-icon">🤖</div>
+      <h3>24H 全天候 AI 助教</h3>
+      <p>遭遇程式盲點或題目不會寫？AI 助教秒級為你拆解步驟、精準破題。</p>
+    </div>
+    <div class="feature">
+      <div class="feature-icon">📈</div>
+      <h3>雷達圖學習數據分析</h3>
+      <p>自動演算出你的弱點科目，並動態微調、規劃專屬的黃金學習路線。</p>
+    </div>
+    <div class="feature">
+      <div class="feature-icon">🏆</div>
+      <h3>頂規技能證照系統</h3>
+      <p>完整收錄技術士與統測試題，更附帶虛擬考場計時功能，考照更有底氣。</p>
+    </div>
+    <div class="feature">
+      <div class="feature-icon">🚀</div>
+      <h3>頂尖產學合作課程</h3>
+      <p>攜手國內一線科技大學與標竿企業，共同產出最符合真實職場需求的實作教材。</p>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<div class="cta">
+  <h2>即刻啟航你的「愛學」旅程</h2>
+  <p>跳脫傳統死背框架。從點燃專業技能到建構未來職涯，一站式的高效智慧進化，就在這裡發生。</p>
+  <button>免費體驗智慧系統</button>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div>
+      <div class="footer-logo">愛學 AI</div>
+      <p>構築次世代技職智慧教育平台，讓每位渴望成長的學子，都能在此磨練出最耀眼的未來技能。</p>
+    </div>
+    <div>
+      <h4>熱門學習領域</h4>
+      <a href="#">資訊科技</a>
+      <a href="#">商業管理</a>
+      <a href="#">電機電子</a>
+      <a href="#">設計美學群</a>
+    </div>
+    <div>
+      <h4>獨家核心功能</h4>
+      <a href="#">AI 智慧解題</a>
+      <a href="#">國家技能檢定</a>
+      <a href="#">統測模擬測驗</a>
+      <a href="#">動態學力分析</a>
+    </div>
+    <div>
+      <h4>支援與合作</h4>
+      <a href="#">聯絡線上客服</a>
+      <a href="#">企業人才媒合</a>
+      <a href="#">學校機構合作</a>
+      <a href="#">服務隱私條款</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
